@@ -62,7 +62,7 @@ table(lowlakes_FL_years)
 table(lowlakes_MO_years)
 lowlakes_FL
 plot(lowlakes_FL_years)
-lowlakes_FL_cyc <- dplyr::filter(lowlakes_FL, genus == "cyclotella")
+lowlakes_FL_cyc <- dplyr::filter(lowlakes_FL, genus == "Cyclotella")
 lowlakes_FL_din <- dplyr::filter(lowlakes_FL, genus == "Dinobryon")
 lowlakes_FL_fra <- dplyr::filter(lowlakes_FL, genus == "Fragilaria")
 lowlakes_FL_nit <- dplyr::filter(lowlakes_FL, genus == "Nitzschia")
@@ -87,4 +87,38 @@ barplot(counts, main="Biovolume by Genus",
 install.packages("tidyverse", dependencies=TRUE)
 library(tidyverse)
 ggplot(data = lowlakes_FL) + 
-  geom_point(mapping = aes(x = genus, y = relative_total_biovolume))
+  geom_point(mapping = aes(x = genus, y = relative_total_biovolume, color =genus))
+lowlakes_FL_cyc
+lowlakes_FL_din
+lowlakes_FL_din_total <- sum(relative_total_biovolume, lowlakes_FL_din)
+?do.call
+lowlakes_FL_din_total <- Reduce("+",lowlakes_FL_din, relative_total_biovolume)
+lowlakes_FL_din_total
+ggplot(data = lowlakes_FL) + 
+  geom_point(mapping = aes(x = relative_total_biovolume, y = genus, color =genus))+
+  scale_x_continuous(labels = NULL)
+ggplot(lowlakes_FL, aes(genus, relative_total_biovolume)) +
+  geom_point() +
+  scale_x_continuous(labels = NULL) +
+  scale_y_continuous(labels = NULL)
+ggplot(data = lowlakes_MO) + 
+  geom_point(mapping = aes(x = relative_total_biovolume, y = genus, color = year4))
+lowlakes_MO_shallow
+ggplot(data = lowlakes_FL_aph, lowlakes_FL_bac) + 
+  geom_point(mapping = aes(x = relative_total_biovolume, y = genus, color = depth))
+view(lowlakes_FL)
+?lowlakes_FL
+typeof(lowlakes_FL)
+typeof(lowlakes_FL_aph)
+lowlakes_FL_aph
+lowlakes_FL_bac
+lowlakes_FL_chr
+lowlakes_FL_cry
+lowlakes_FL_cry_sum <- unlist(lowlakes_FL_cry)
+lowlakes_FL_cry_sum
+lowlakes_FL_cry_sum <- sum(lowlakes_FL_cry_sum)
+lowlakes_FL_cry_sum
+lowlakes_FL_cry
+lowlakes_FL_cry[14]
+lowlakes_FL_cry_sum <- sum(lowlakes_FL_cry[14])
+lowlakes_FL_cry_sum
